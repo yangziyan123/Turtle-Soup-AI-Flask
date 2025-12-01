@@ -11,7 +11,6 @@ function startGame() {
     const selected = document.querySelector(".mode-option.selected");
     const mode = selected.dataset.mode;
 
-    // riddle_id 是从 URL 自动传过来的
     const riddleId = window.location.pathname.split("/")[2];
 
     window.location.href = `/game/${riddleId}/${mode}`;

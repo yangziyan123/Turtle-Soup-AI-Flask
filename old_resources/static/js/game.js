@@ -6,7 +6,7 @@ function addMessage(role, text) {
     const area = document.getElementById("chat-area");
     const div = document.createElement("div");
 
-    div.className = "chat-msg system-msg";  // 你可之后区分 user/ai 样式
+    div.className = "chat-msg system-msg";
 
     div.innerHTML = text;
     area.appendChild(div);
