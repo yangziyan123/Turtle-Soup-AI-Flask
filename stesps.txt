@@ -1,0 +1,13 @@
+  搭建 play.py / scores.py API 蓝图
+
+  编写 game_sessions & scores 表模型
+
+  实现 /api/play/start
+
+  实现 AI 规则系统（简易版）
+
+  实现 /api/play/chat 逻辑
+
+  实现 /api/play/finish + 评分逻辑
+
+  实现 /api/scores 排行榜 API
