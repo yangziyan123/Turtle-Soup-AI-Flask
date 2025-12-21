@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <title>Turtle Soup Play</title>
@@ -11,60 +12,62 @@
 
 <body>
 
-<div class="topbar">
-    <div class="topbar-inner">
-        <div class="top-left" onclick="goBack()">
-            <i data-lucide="chevron-left"></i>
-        </div>
-        <div class="top-info">
-            <div class="title" id="puzzle-title">Loading...</div>
-            <div class="subtitle" id="mode-text">
-                MODE – DETECTIVE TEAM
+    <div class="topbar">
+        <div class="topbar-inner">
+            <div class="top-left" onclick="goBack()">
+                <i data-lucide="chevron-left"></i>
+            </div>
+            <div class="top-info">
+                <div class="title" id="puzzle-title">Loading...</div>
+                <div class="subtitle" id="mode-text">
+                    MODE – DETECTIVE TEAM
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="chat-shell">
-    <div class="status-bar">
-        <div class="status-item" id="timer-box">Time: --</div>
-        <div class="status-item" id="question-box">Questions: --</div>
-    </div>
+    <div class="chat-shell">
+        <div class="status-bar">
+            <div class="status-item" id="timer-box">Time: --</div>
+            <div class="status-item" id="question-box">Questions: --</div>
+        </div>
 
-    <div class="situation-card">
-        <div class="sit-title">THE SITUATION</div>
-        <div class="sit-text" id="puzzle-desc">Loading puzzle...</div>
-    </div>
+        <div class="situation-card">
+            <div class="sit-title">THE SITUATION</div>
+            <div class="sit-text" id="puzzle-desc">Loading puzzle...</div>
+        </div>
 
-    <div id="chat-area" class="chat-area">
-        <div class="chat-msg system" id="welcome-msg">
-            Loading case info...
+        <div id="chat-area" class="chat-area">
+            <div class="chat-msg system" id="welcome-msg">
+                Loading case info...
+            </div>
         </div>
     </div>
-</div>
 
-<div class="chat-input">
-    <div class="input-wrap">
-        <i data-lucide="lightbulb"></i>
-        <input id="question" type="text" placeholder="Ask a Yes/No question...">
+    <div class="chat-input">
+        <div class="input-wrap">
+            <i data-lucide="lightbulb"></i>
+            <input id="question" type="text" placeholder="Ask a Yes/No question...">
+        </div>
+
+        <div class="send-btn" onclick="sendQuestion()">
+            <i data-lucide="arrow-right"></i>
+        </div>
     </div>
 
-    <div class="send-btn" onclick="sendQuestion()">
-        <i data-lucide="arrow-right"></i>
+    <div class="finish-bar">
+        <button class="finish-btn success" onclick="finishGame('success')">Solved</button>
+        <button class="finish-btn fail" onclick="finishGame('fail')">Give Up</button>
+        <span id="status-text" class="status-text"></span>
     </div>
-</div>
 
-<div class="finish-bar">
-    <button class="finish-btn success" onclick="finishGame('success')">Solved</button>
-    <button class="finish-btn fail" onclick="finishGame('fail')">Give Up</button>
-    <span id="status-text" class="status-text"></span>
-</div>
-
-<script src="/assets/js/api.js"></script>
-<script src="/assets/js/play.js"></script>
-<script>
-    lucide.createIcons();
-</script>
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/status_bar.js"></script>
+    <script src="/assets/js/play.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 
 </body>
+
 </html>

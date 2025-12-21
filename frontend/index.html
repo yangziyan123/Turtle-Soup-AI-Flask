@@ -1,55 +1,58 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <title>Turtle Soup</title>
-    <link rel="stylesheet" href="/assets/css/index.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+<head>
+  <meta charset="UTF-8">
+  <title>Turtle Soup</title>
+  <link rel="stylesheet" href="/assets/css/index.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 
 <body>
 
-    <header class="top-section">
-        <h1 class="title">Turtle Soup</h1>
-        <p class="subtitle">Lateral Thinking Mystery Game</p>
+  <header class="top-section">
+    <h1 class="title">Turtle Soup</h1>
+    <p class="subtitle">Lateral Thinking Mystery Game</p>
 
-        <div class="top-buttons">
-            <a class="cute-btn" href="/scoreboard.html"><i data-lucide="trophy"></i> Leaderboard</a>
-            <a class="cute-btn" href="/admin.html"><i data-lucide="shield"></i> Admin</a>
-            <a class="cute-btn" id="auth-btn" href="/login.html"><i data-lucide="log-in"></i> Login</a>
-        </div>
-    </header>
-
-    <!-- 谜题卡片 -->
-    <div class="card-grid" id="puzzle-grid">
-        <div class="riddle-card card-yellow">
-            <h2 class="card-title">Loading...</h2>
-            <p class="card-desc">Fetching puzzles...</p>
-        </div>
+    <div class="top-buttons">
+      <a class="cute-btn" href="/scoreboard.html"><i data-lucide="trophy"></i> Leaderboard</a>
+      <a class="cute-btn" href="/admin.html" style="display:none"><i data-lucide="shield"></i> Admin</a>
+      <a class="cute-btn" id="auth-btn" href="/login.html"><i data-lucide="log-in"></i> Login</a>
     </div>
+  </header>
 
-    <script>
+  <!-- 谜题卡片 -->
+  <div class="card-grid" id="puzzle-grid">
+    <div class="riddle-card card-yellow">
+      <h2 class="card-title">Loading...</h2>
+      <p class="card-desc">Fetching puzzles...</p>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
+  <script src="/assets/js/api.js"></script>
+  <script src="/assets/js/puzzles.js"></script>
+  <script src="/assets/js/status_bar.js"></script>
+  <script>
+    // 简单的登录按钮切换
+    (function () {
+      const btn = document.getElementById("auth-btn");
+      const token = getToken();
+      if (token) {
+        btn.innerHTML = '<i data-lucide="log-out"></i> Logout';
+        btn.href = "javascript:void(0)";
+        btn.onclick = function () {
+          localStorage.removeItem("token");
+          window.location.reload();
+        };
+      }
       lucide.createIcons();
-    </script>
-    <script src="/assets/js/api.js"></script>
-    <script src="/assets/js/puzzles.js"></script>
-    <script>
-      // 简单的登录按钮切换
-      (function() {
-        const btn = document.getElementById("auth-btn");
-        const token = getToken();
-        if (token) {
-          btn.innerHTML = '<i data-lucide="log-out"></i> Logout';
-          btn.href = "javascript:void(0)";
-          btn.onclick = function() {
-            localStorage.removeItem("token");
-            window.location.reload();
-          };
-        }
-        lucide.createIcons();
-      })();
-    </script>
+    })();
+  </script>
 </body>
+
 </html>

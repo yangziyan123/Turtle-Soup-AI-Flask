@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <title>Mission Setup</title>
@@ -10,47 +11,49 @@
 
 <body>
 
-<div class="page-bg">
+    <div class="page-bg">
 
-    <div class="setup-card">
+        <div class="setup-card">
 
-        <h1 class="title">Mission Setup</h1>
+            <h1 class="title">Mission Setup</h1>
 
-        <!-- Game Mode -->
-        <label class="label" style="margin-top: 22px;">Game Mode</label>
+            <!-- Game Mode -->
+            <label class="label" style="margin-top: 22px;">Game Mode</label>
 
-        <div class="mode-list">
+            <div class="mode-list">
 
-            <div class="mode-option selected" data-mode="free">
-                <div class="mode-title">Story Mode</div>
-                <div class="mode-desc">Relax and solve at your own pace.</div>
+                <div class="mode-option selected" data-mode="free">
+                    <div class="mode-title">Story Mode</div>
+                    <div class="mode-desc">Relax and solve at your own pace.</div>
+                </div>
+
+                <div class="mode-option" data-mode="timed">
+                    <div class="mode-title">Time Attack</div>
+                    <div class="mode-desc">Solve within 5 minutes!</div>
+                </div>
+
+                <div class="mode-option" data-mode="limited_questions">
+                    <div class="mode-title">Detective</div>
+                    <div class="mode-desc">Limited resources. 20 questions, 3 hints.</div>
+                </div>
+
             </div>
 
-            <div class="mode-option" data-mode="timed">
-                <div class="mode-title">Time Attack</div>
-                <div class="mode-desc">Solve within 5 minutes!</div>
+            <!-- Buttons -->
+            <div class="btn-row">
+                <a href="/" class="btn-cancel">Cancel</a>
+                <button class="btn-start" onclick="startGame()">Start Game</button>
             </div>
 
-            <div class="mode-option" data-mode="limited_questions">
-                <div class="mode-title">Detective</div>
-                <div class="mode-desc">Limited resources. 20 questions, 3 hints.</div>
-            </div>
-
-        </div>
-
-        <!-- Buttons -->
-        <div class="btn-row">
-            <a href="/" class="btn-cancel">Cancel</a>
-            <button class="btn-start" onclick="startGame()">Start Game</button>
         </div>
 
     </div>
 
-</div>
-
-<script src="/assets/js/api.js"></script>
-<script src="/assets/js/play_mode.js"></script>
-<script>lucide.createIcons();</script>
+    <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/status_bar.js"></script>
+    <script src="/assets/js/play_mode.js"></script>
+    <script>lucide.createIcons();</script>
 
 </body>
+
 </html>

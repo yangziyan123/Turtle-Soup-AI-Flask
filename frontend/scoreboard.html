@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <title>Leaderboard</title>
@@ -11,24 +12,42 @@
             background: white;
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px 10px;
             text-align: left;
             border-bottom: 1px solid #f1f1f1;
             font-size: 14px;
         }
-        th { color: #666; }
-        .score { font-weight: 700; color: #FF8FB1; }
-        .puzzle { color: #555; }
-        .time { color: #999; font-size: 12px; }
+
+        th {
+            color: #666;
+        }
+
+        .score {
+            font-weight: 700;
+            color: #FF8FB1;
+        }
+
+        .puzzle {
+            color: #555;
+        }
+
+        .time {
+            color: #999;
+            font-size: 12px;
+        }
     </style>
 </head>
+
 <body>
 
     <header class="top-section">
@@ -51,14 +70,18 @@
                 </tr>
             </thead>
             <tbody id="score-body">
-                <tr><td colspan="5">Loading...</td></tr>
+                <tr>
+                    <td colspan="5">Loading...</td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/assets/js/api.js"></script>
+    <script src="/assets/js/status_bar.js"></script>
     <script src="/assets/js/scoreboard.js"></script>
     <script>lucide.createIcons();</script>
 </body>
+
 </html>

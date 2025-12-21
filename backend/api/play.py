@@ -38,7 +38,7 @@ def start_game():
         "session_id": session.id,
         "mode": session.mode,
         "puzzle_id": session.puzzle_id,
-        "start_time": session.start_time.isoformat(),
+        "start_time": session.start_time.isoformat() + "Z",
         # 如果是限时模式，前端需要开始计时
         "limit_seconds": 300 if session.mode == "timed" else None,
         # 如果是限题提醒，前端需要展示剩余次数
