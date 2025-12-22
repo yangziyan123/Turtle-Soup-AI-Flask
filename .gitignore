@@ -1,5 +1,34 @@
-# 忽略 Python 缓存文件
+# Python 编译生成的字节码文件
 __pycache__/
-*.py[cod]
+*.pyc
+*.pyo
+*.pyd
 
+# 数据库文件
+*.db
+*.sqlite3
+haiguitang.db
+
+# 虚拟环境
+venv/
+env/
+ENV/
+**/venv/
+**/env/
+
+# IDE/编辑器相关（如果你用 VS Code / PyCharm）
 .vscode/
+.idea/
+
+# 日志
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 其他临时文件
+*.tmp
+*.swp
+
+docs
