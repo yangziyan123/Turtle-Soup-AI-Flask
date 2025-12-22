@@ -6,6 +6,7 @@ let limitQuestions = null;
 let startTime = null;
 let questionUsed = 0;
 let timerInterval = null;
+let gameOver = false;
 
 function t(key, fallback) {
   return window.I18N ? I18N.t(key, fallback) : fallback;
@@ -100,6 +101,7 @@ async function sendQuestion() {
   const qInput = document.getElementById("question");
   const q = qInput.value.trim();
   if (!q) return;
+  if (gameOver) return;
   if (!sessionId) {
     alert(t("play.missingSession", "Missing session"));
     return;
@@ -128,14 +130,23 @@ async function sendQuestion() {
       return;
     }
 
+    if (data.type === "game_over") {
+      gameOver = true;
+      if (timerInterval) clearInterval(timerInterval);
+      addMessage("system", `<b>${t("play.result", "Result")}:</b> ${data.answer || ""}`);
+      const statusText = document.getElementById("status-text");
+      statusText.textContent = `${t("play.finished", "Finished")}: ${t("play.success", "success")}, ${t("play.score", "score")} ${data.score}`;
+      const giveUpBtn = document.getElementById("give-up-btn");
+      if (giveUpBtn) giveUpBtn.style.display = "none";
+      const input = document.getElementById("question");
+      if (input) input.disabled = true;
+      return;
+    }
+
     questionUsed += 1;
     updateQuestionBox();
 
-    if (data.type === "guess_result") {
-      addMessage("system", `<b>${t("play.result", "Result")}:</b> ${data.answer}`);
-    } else {
-      addMessage("ai", `<b>${t("play.answer", "Answer")}:</b> ${data.answer}`);
-    }
+    addMessage("ai", `<b>${t("play.answer", "Answer")}:</b> ${data.answer}`);
   } catch (err) {
     console.error(err);
     addMessage("system", `<b>${t("play.system", "System")}:</b> ${t("common.networkError", "Network error")}`);
@@ -147,6 +158,7 @@ async function finishGame(result) {
     alert(t("play.missingSession", "Missing session"));
     return;
   }
+  if (gameOver) return;
 
   try {
     const res = await apiFetch("/api/play/finish", {
@@ -169,9 +181,13 @@ async function finishGame(result) {
       return;
     }
 
-    const resultText =
-      data.result === "success" ? t("play.success", "success") : t("play.fail", "fail");
+    gameOver = true;
+    if (timerInterval) clearInterval(timerInterval);
+
+    const resultText = t("play.fail", "fail");
     statusText.textContent = `${t("play.finished", "Finished")}: ${resultText}, ${t("play.score", "score")} ${data.score}`;
+    const input = document.getElementById("question");
+    if (input) input.disabled = true;
   } catch (err) {
     console.error(err);
     alert(t("common.networkError", "Network error"));
@@ -201,6 +217,16 @@ function init() {
   updateQuestionBox();
   startCountdown();
   loadPuzzle();
+
+  const input = document.getElementById("question");
+  if (input) {
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendQuestion();
+      }
+    });
+  }
 }
 
 window.sendQuestion = sendQuestion;

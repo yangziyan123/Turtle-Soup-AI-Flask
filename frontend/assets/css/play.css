@@ -170,10 +170,6 @@ body {
     cursor: pointer;
 }
 
-.finish-btn.success {
-    background: #52c41a;
-}
-
 .finish-btn.fail {
     background: #ff7875;
 }

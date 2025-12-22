@@ -76,12 +76,15 @@ def chat():
 
     if error == "session_not_found":
         return {"error": "session_not_found"}, 404
+    if error == "already_finished":
+        return {"error": "already_finished"}, 400
     if error == "time_over":
         return {"error": "time_over"}, 403
     if error == "question_limit_reached":
         return {"error": "question_limit_reached"}, 403
-    if error == "guess_result":
-        return {"answer": reply, "type": "guess_result"}, 200
+    # GameService 可能直接返回结构化结果（例如自动结算）
+    if isinstance(reply, dict) and reply.get("type") == "game_over":
+        return reply, 200
 
     return {
         "answer": reply,
